@@ -42,6 +42,10 @@
 }
 
 @theme inline {
+  --color-hunter-gon: var(--hunter-gon);
+  --color-hunter-killua: var(--hunter-killua);
+  --color-hunter-kurapika: var(--hunter-kurapika);
+  --color-hunter-leorio: var(--hunter-leorio);
   --color-background: var(--background);
   --color-foreground: var(--foreground);
   --color-chat-canvas: var(--chat-canvas);
@@ -3332,4 +3336,128 @@ html.native-shell .app-layout {
   box-shadow:
     inset 0 1px 0 0 color-mix(in srgb, var(--foreground) 5%, transparent),
     0 10px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* Personal prototype accents derive from the canonical palette in both schemes. */
+:root,
+.dark {
+  --hunter-gon: var(--status-success);
+  --hunter-killua: var(--chart-1);
+  --hunter-kurapika: var(--destructive);
+  --hunter-leorio: var(--chart-4);
+}
+
+.hunter-companion {
+  --hunter-character-accent: var(--hunter-gon);
+}
+
+.hunter-companion[data-character='killua'] {
+  --hunter-character-accent: var(--hunter-killua);
+}
+
+.hunter-companion[data-character='kurapika'] {
+  --hunter-character-accent: var(--hunter-kurapika);
+}
+
+.hunter-companion[data-character='leorio'] {
+  --hunter-character-accent: var(--hunter-leorio);
+}
+
+.hunter-companion-scene {
+  background: color-mix(in srgb, var(--hunter-character-accent) 8%, var(--sidebar));
+  border-color: color-mix(in srgb, var(--hunter-character-accent) 30%, var(--border));
+}
+
+.hunter-companion-portrait {
+  width: 3.5rem;
+  height: 10rem;
+  overflow: hidden;
+  border-radius: var(--radius-sm);
+}
+
+.hunter-companion[data-intensity='off'] .hunter-companion-scene {
+  background: var(--sidebar);
+  border-color: var(--border);
+}
+
+.hunter-companion[data-agent-state='working']:not([data-intensity='off']):not(
+    [data-working-effect='none']
+  )
+  .hunter-companion-scene,
+.hunter-companion[data-agent-state='monitoring']:not([data-intensity='off']):not(
+    [data-working-effect='none']
+  )
+  .hunter-companion-scene {
+  animation: hunter-nen-breathe 3s ease-in-out infinite;
+}
+
+.hunter-companion[data-intensity='full'] .hunter-companion-scene {
+  background: color-mix(in srgb, var(--hunter-character-accent) 16%, var(--sidebar));
+}
+
+.hunter-companion[data-agent-state='waiting'][data-attention-effect='outline']:not(
+    [data-intensity='off']
+  )
+  .hunter-companion-scene,
+.hunter-companion[data-agent-state='blocked'][data-attention-effect='outline']:not(
+    [data-intensity='off']
+  )
+  .hunter-companion-scene,
+.hunter-companion[data-agent-state='permission'][data-attention-effect='outline']:not(
+    [data-intensity='off']
+  )
+  .hunter-companion-scene {
+  border-color: var(--status-warning);
+}
+
+@keyframes hunter-nen-breathe {
+  50% {
+    border-color: var(--hunter-character-accent);
+  }
+}
+
+.hunter-companion[data-agent-state='done']:not([data-intensity='off']):not(
+    [data-done-effect='none']
+  )
+  .hunter-companion-scene {
+  animation: hunter-turn-complete 700ms ease-out;
+}
+
+@keyframes hunter-turn-complete {
+  from {
+    border-color: var(--hunter-character-accent);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hunter-companion .hunter-companion-scene {
+    animation: none !important;
+  }
+}
+
+@media (max-height: 700px) {
+  .hunter-companion-portrait {
+    height: 5rem;
+    width: 1.75rem;
+  }
+}
+
+.hunter-theme-mark[data-area='workspace'] {
+  color: var(--hunter-gon);
+}
+.hunter-theme-mark[data-area='agent'] {
+  color: var(--hunter-killua);
+}
+.hunter-theme-mark[data-area='review'] {
+  color: var(--hunter-kurapika);
+}
+.hunter-theme-mark[data-area='clock'] {
+  color: var(--hunter-leorio);
+}
+.hunter-companion[data-working-effect='electric'][data-intensity='full'][data-agent-state='working']
+  .hunter-companion-scene {
+  animation: hunter-nen-breathe 1.5s ease-in-out infinite;
+}
+html[data-character-theme-intensity='off'] .hunter-theme-mark {
+  opacity: 0.75;
 }

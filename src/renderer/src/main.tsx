@@ -9,6 +9,7 @@ import './assets/main.css'
 import { StrictMode } from 'react'
 import { useTranslation } from 'react-i18next'
 import App from './App'
+import { CharacterThemeProvider } from './components/hunter-theme/CharacterThemeProvider'
 import { RecoverableRenderErrorBoundary } from './components/error-boundaries/RecoverableRenderErrorBoundary'
 import {
   installRendererCrashDiagnostics,
@@ -66,7 +67,13 @@ function RendererRoot(): React.JSX.Element {
         'The app shell could not finish rendering. Retry to remount it, or relaunch Orca if the error persists.'
       )}
     >
-      <App />
+      {import.meta.env.VITE_ORCA_HUNTER_THEME === '1' ? (
+        <CharacterThemeProvider>
+          <App />
+        </CharacterThemeProvider>
+      ) : (
+        <App />
+      )}
       <SkillWarningPreviewLauncher />
     </RecoverableRenderErrorBoundary>
   )

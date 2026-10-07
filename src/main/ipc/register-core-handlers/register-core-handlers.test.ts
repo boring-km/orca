@@ -159,6 +159,8 @@ vi.mock('../codex-config-sync', () => ({
   registerCodexConfigSyncHandlers: registerCodexConfigSyncHandlersMock
 }))
 
+vi.mock('../character-theme-packs', () => ({ registerCharacterThemePackHandlers: vi.fn() }))
+
 vi.mock('../onboarding', () => ({
   registerOnboardingHandlers: registerOnboardingHandlersMock
 }))

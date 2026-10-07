@@ -4,8 +4,10 @@ import type {
   WarpThemeImportSource
 } from '../../shared/terminal-custom-themes'
 import type { GhosttyImportPreview, GlobalSettings } from '../../shared/global-settings-types'
+import type { CharacterThemePackApi } from '../../shared/character-theme-manifest'
 
 export type SettingsApi = {
+  characterThemes?: CharacterThemePackApi
   get: () => Promise<GlobalSettings>
   /** Synchronous persisted-settings read for startup decisions that can't wait for async hydration. Blocking IPC — call sparingly. */
   getSync: () => GlobalSettings | null

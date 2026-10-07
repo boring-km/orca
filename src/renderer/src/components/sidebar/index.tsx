@@ -23,6 +23,7 @@ import { LocalGitToolchainScanBanner } from './LocalGitToolchainScanBanner'
 // Why lazy: the Agents list pulls the whole activity pipeline (virtualizer, markdown
 // previews, thread derivation); users on the workspace view should not load or render any of it.
 const SidebarAgentsList = lazyWithRetry(() => import('./SidebarAgentsList'))
+const HunterCompanion = lazyWithRetry(() => import('../hunter-theme/HunterCompanion'))
 
 const WorktreeMetaDialog = lazyWithRetry(() => import('./WorktreeMetaDialog'))
 const RemoveFolderDialog = lazyWithRetry(() => import('./RemoveFolderDialog'))
@@ -197,6 +198,11 @@ function Sidebar({
             )}
 
             <div className="relative shrink-0">
+              {import.meta.env.VITE_ORCA_HUNTER_THEME === '1' ? (
+                <React.Suspense fallback={null}>
+                  <HunterCompanion />
+                </React.Suspense>
+              ) : null}
               <SetupScriptPromptCard />
 
               {/* Fixed bottom toolbar */}

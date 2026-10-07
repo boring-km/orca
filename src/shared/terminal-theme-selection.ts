@@ -13,7 +13,11 @@ export const DEFAULT_TERMINAL_THEME_LIGHT = 'Builtin Tango Light'
 
 export type TerminalThemeSelectionSettings = Pick<
   GlobalSettings,
-  'theme' | 'terminalThemeDark' | 'terminalUseSeparateLightTheme' | 'terminalThemeLight'
+  | 'theme'
+  | 'terminalThemeDark'
+  | 'terminalUseSeparateLightTheme'
+  | 'terminalThemeLight'
+  | 'characterTheme'
 >
 
 export type TerminalThemeSelection = {
@@ -28,6 +32,17 @@ export function selectTerminalTheme(
   systemPrefersDark: boolean
 ): TerminalThemeSelection {
   const mode = settings.theme === 'system' ? (systemPrefersDark ? 'dark' : 'light') : settings.theme
+  const characterTheme = settings.characterTheme
+  const themePalette = characterTheme?.terminalPalette
+  const packThemeName = themePalette?.[mode]
+  if (
+    characterTheme?.enabled &&
+    characterTheme.terminalEnabled &&
+    packThemeName &&
+    TERMINAL_THEME_CATALOG[packThemeName]
+  ) {
+    return { mode, useLightVariant: mode === 'light', themeName: packThemeName }
+  }
   const useLightVariant = mode === 'light' && settings.terminalUseSeparateLightTheme
   const themeName = useLightVariant
     ? settings.terminalThemeLight || DEFAULT_TERMINAL_THEME_LIGHT

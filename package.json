@@ -76,6 +76,7 @@
     "start": "pnpm run ensure:electron-runtime && electron-vite preview",
     "dev": "pnpm run ensure:electron-runtime && node config/scripts/run-electron-vite-dev.mjs",
     "dev:hunter": "pnpm run ensure:electron-runtime && node config/scripts/run-hunter-dev.mjs",
+    "dev:hunter:preview": "pnpm run ensure:electron-runtime && node config/scripts/run-hunter-dev.mjs --preview",
     "dev-stable-name": "pnpm run ensure:electron-runtime && node config/scripts/run-electron-vite-dev.mjs --stable-name",
     "dev:web": "vite --config vite.web.config.ts --host 127.0.0.1",
     "build:relay": "node --disable-warning=MODULE_TYPELESS_PACKAGE_JSON config/scripts/build-relay.mjs",
@@ -210,6 +211,8 @@
     "tweetnacl": "^1.0.3",
     "ws": "^8.22.0",
     "yaml": "^2.9.1",
+    "yauzl": "^3.4.0",
+    "yazl": "^3.3.1",
     "zod": "~4.6.5"
   },
   "devDependencies": {
@@ -256,6 +259,8 @@
     "@types/react-dom": "~19.2.7",
     "@types/ssh2": "^1.15.6",
     "@types/ws": "^8.18.1",
+    "@types/yauzl": "^3.4.0",
+    "@types/yazl": "^3.3.1",
     "@vitejs/plugin-react": "^5.2.0",
     "@vscode/ripgrep-universal": "1.18.0",
     "@xterm/addon-fit": "0.12.0-beta.300",

@@ -8,6 +8,7 @@ import { Popover, PopoverAnchor, PopoverArrow, PopoverContent } from '@/componen
 import { Tooltip, TooltipContent, TooltipTrigger } from '@/components/ui/tooltip'
 import { Sparkles, Bell } from 'lucide-react'
 import { cn } from '@/lib/utils'
+import { CharacterThemeMark } from '@/components/hunter-theme/CharacterThemeMark'
 
 type SidebarHeaderProps = {
   onWorkspaceBoardMenuOpenChange: (open: boolean) => void
@@ -48,6 +49,7 @@ const SidebarHeader = React.memo(function SidebarHeader({
   return (
     <div className="mt-2 flex h-8 min-w-0 items-center justify-between gap-1.5 px-2">
       <div className="flex min-w-0 items-center gap-1">
+        <CharacterThemeMark area={agentsViewActive ? 'agent' : 'workspace'} />
         <span
           // Why truncate: the action cluster is shrink-0, so a long localized title
           // (es "Espacios de trabajo") otherwise wraps out of the h-8 row.

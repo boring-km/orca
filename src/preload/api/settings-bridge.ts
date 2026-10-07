@@ -5,8 +5,10 @@ import type {
   WarpThemeImportSource
 } from '../../shared/terminal-custom-themes'
 import type { PreloadApi } from '../api-types'
+import { characterThemeApi } from './character-theme-bridge'
 
 export const settingsApi = {
+  characterThemes: characterThemeApi,
   get: () => ipcRenderer.invoke('settings:get'),
 
   // Why: blocking read for the few startup decisions (terminal side-effect authority) that can't wait for async hydration. Call sparingly.

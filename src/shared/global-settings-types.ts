@@ -41,6 +41,7 @@ import type {
 } from './ui-chrome-types'
 import type { SetupScriptLaunchMode } from './worktree/launch-types'
 import type { WorktreeVisibilityDefaults } from './repo-types'
+import type { CharacterThemeSettings } from './character-theme-settings'
 
 export type { WorktreeVisibilityDefaults } from './repo-types'
 
@@ -70,6 +71,7 @@ export type GlobalSettings = NativeChatGlobalSettings & {
   branchPrefix: BranchPrefixStrategy
   branchPrefixCustom: string
   theme: 'system' | 'dark' | 'light'
+  characterTheme?: CharacterThemeSettings
   /** Controls the left sidebar surface without changing terminal brightness. */
   leftSidebarAppearanceMode: LeftSidebarAppearanceMode
   leftSidebarTintColor?: string

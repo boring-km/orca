@@ -1,4 +1,5 @@
 import React from 'react'
+import { CharacterThemeMark } from '@/components/hunter-theme/CharacterThemeMark'
 import { SortableContext } from '@dnd-kit/sortable'
 import { ChevronLeft, ChevronRight, Plus } from 'lucide-react'
 import { translate } from '@/i18n/i18n'
@@ -114,6 +115,7 @@ export function renderTabBarSurface({
       // Why: preload routes native OS drops by this marker — only the tab strip opens files in the editor, not terminal panes.
       data-native-file-drop-target="editor"
     >
+      <CharacterThemeMark area="workspace" />
       {tabStripOverflowState.hasOverflow ? (
         <Tooltip>
           <TooltipTrigger asChild>

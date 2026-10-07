@@ -15,6 +15,7 @@ import { HostedReviewHeaderLink, HostedReviewIcon } from '../review/hosted-revie
 import { SourceControlBranchContextRow } from './branch-context-row'
 import { shouldShowSourceControlBranchContextChrome } from './branch-context-stats'
 import { SourceControlHeaderOverflowMenu } from './header-overflow-menu'
+import { CharacterThemeMark } from '@/components/hunter-theme/CharacterThemeMark'
 
 type SourceControlHeaderToolbarProps = {
   filterQuery: string
@@ -212,6 +213,7 @@ export function SourceControlHeaderToolbar({
         className={cn('flex min-w-0 items-center gap-1', filterExpanded && 'w-full gap-1.5')}
         data-filter-expanded={filterExpanded ? 'true' : 'false'}
       >
+        <CharacterThemeMark area="review" />
         {showCollapsedToolbar ? (
           <>
             {hostedReview ? (

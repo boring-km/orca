@@ -31,6 +31,7 @@ import { ProviderSegment, UsageOverflowChip, getUsageTone } from './StatusBarPro
 import { useStatusBarController } from './use-status-bar-controller'
 import { StatusBarVisibilityMenu } from './StatusBarVisibilityMenu'
 import { isPairedWebClientWindow } from '@/lib/desktop-window-chrome'
+import { CharacterThemeClock } from '@/components/hunter-theme/CharacterThemeClock'
 
 const PetStatusSegment = lazyWithRetry(() =>
   import('./PetStatusSegment').then((module) => ({ default: module.PetStatusSegment }))
@@ -115,6 +116,7 @@ export function StatusBarSurface({
       }}
     >
       {/* Why: usage gives way first — what it drops stays one click away in its popover. */}
+      <CharacterThemeClock />
       <div
         className="status-bar-usage-cluster flex min-w-0 flex-1 items-center overflow-clip [overflow-clip-margin:3px]"
         data-overflowing={overflowing}
