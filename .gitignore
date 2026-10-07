@@ -38,6 +38,7 @@ native/windows-registry/bin/
 package-lock.json
 
 # Environment
+.hunter-dev-profile/
 .env
 .env.local
 .env.*.local
