@@ -1,4 +1,5 @@
 import React, { useMemo, useState } from 'react'
+import { CharacterThemeScenery } from '../hunter-theme/CharacterThemeScenery'
 import { PanelRight } from 'lucide-react'
 import { useAppStore } from '@/store'
 import { cn } from '@/lib/utils'
@@ -79,7 +80,8 @@ function RightSidebarInner(): React.JSX.Element {
   const topActivityStripRef = useMeasuredWidth(setTopActivityStripWidth)
 
   const panelContent = rightSidebarOpen ? (
-    <div className="flex flex-col flex-1 min-h-0 overflow-hidden scrollbar-sleek-parent">
+    <div className="character-theme-surface relative flex flex-col flex-1 min-h-0 overflow-hidden scrollbar-sleek-parent">
+      <CharacterThemeScenery area="review" />
       {/* Why: sidebar panels no longer use key={activeWorktreeId} because
           the full unmount/remount cycle on every worktree switch triggered
           an IPC storm (watchWorktree + readDir + git:branchCompare + …)

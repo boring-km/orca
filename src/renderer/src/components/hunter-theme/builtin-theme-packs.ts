@@ -3,6 +3,11 @@ import {
   NEUTRAL_THEME_MANIFEST
 } from '../../../../shared/builtin-character-themes'
 import type { LoadedThemePack } from '../../../../shared/character-theme-manifest'
+import { SHINCHAN_THEME_MANIFEST } from '../../../../shared/shinchan-theme-manifest'
+import shinchan from '@/assets/shinchan-reference/shinchan.png'
+import shiro from '@/assets/shinchan-reference/shiro.png'
+import actionKamen from '@/assets/shinchan-reference/action-kamen.png'
+import himawari from '@/assets/shinchan-reference/himawari.png'
 import gon from '@/assets/hunter-reference/gon.gif'
 import killua from '@/assets/hunter-reference/killua.gif'
 import kurapika from '@/assets/hunter-reference/kurapika.gif'
@@ -19,7 +24,17 @@ export const BUILTIN_THEME_PACKS: LoadedThemePack[] = [
       'assets/leorio.gif': { url: leorio, width: 684, height: 485 }
     }
   },
-  { key: 'neutral', manifest: NEUTRAL_THEME_MANIFEST, assets: {} }
+  { key: 'neutral', manifest: NEUTRAL_THEME_MANIFEST, assets: {} },
+  {
+    key: 'shinchan',
+    manifest: SHINCHAN_THEME_MANIFEST,
+    assets: {
+      'assets/shinchan.png': { url: shinchan, width: 340, height: 420 },
+      'assets/shiro.png': { url: shiro, width: 340, height: 370 },
+      'assets/action-kamen.png': { url: actionKamen, width: 340, height: 420 },
+      'assets/himawari.png': { url: himawari, width: 340, height: 370 }
+    }
+  }
 ]
 
 export function builtinThemePack(key: string): LoadedThemePack | undefined {

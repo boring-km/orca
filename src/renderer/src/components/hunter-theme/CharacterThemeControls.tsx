@@ -1,3 +1,4 @@
+import type { ReactElement } from 'react'
 import { Palette, Download, Upload, ImagePlus, Undo2 } from 'lucide-react'
 import { Separator } from '@/components/ui/separator'
 import { Button } from '@/components/ui/button'
@@ -18,7 +19,11 @@ import { useCharacterThemeActions } from './use-character-theme-actions'
 import { ThemePackPreviewDialog } from './ThemePackPreviewDialog'
 import { themePackExportPayload } from './theme-pack-export'
 
-export function CharacterThemeControls(): React.JSX.Element | null {
+export function CharacterThemeControls({
+  children
+}: {
+  children: ReactElement
+}): React.JSX.Element | null {
   const {
     theme,
     api,
@@ -41,11 +46,7 @@ export function CharacterThemeControls(): React.JSX.Element | null {
   return (
     <>
       <Popover>
-        <PopoverTrigger asChild>
-          <Button variant="ghost" size="xs">
-            꾸미기
-          </Button>
-        </PopoverTrigger>
+        <PopoverTrigger asChild>{children}</PopoverTrigger>
         <PopoverContent side="top" align="start" sideOffset={8} wheelScroll>
           <div className="w-80 max-w-[calc(100vw-2rem)] max-h-[var(--radix-popover-content-available-height)] overflow-y-auto scrollbar-sleek p-4 space-y-4">
             <div className="flex items-center gap-2">

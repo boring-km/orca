@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { THEME_INTENSITIES, type CharacterThemeManifest } from './character-theme-manifest'
 
-const packKey = z.string().regex(/^(hunter|neutral|imported-[a-f0-9]{24})$/)
+const packKey = z.string().regex(/^(hunter|neutral|shinchan|imported-[a-f0-9]{24})$/)
 const characterThemeSettingsSchema = z.object({
   enabled: z.boolean().catch(true),
   activePackId: packKey.catch('hunter'),

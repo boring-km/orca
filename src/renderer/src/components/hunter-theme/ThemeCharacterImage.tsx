@@ -14,12 +14,14 @@ export function ThemeCharacterImage({
   character,
   kind,
   area = 'workspace',
+  className,
   expression
 }: {
   pack: LoadedThemePack
   character: ThemeCharacter
   kind: 'portrait' | 'avatar'
   area?: ThemeArea
+  className?: string
   expression?: 'working' | 'done' | 'attention' | 'idle'
 }): React.JSX.Element {
   const [failedUrl, setFailedUrl] = useState<string | null>(null)
@@ -32,7 +34,7 @@ export function ThemeCharacterImage({
   if (!asset || failedUrl === asset.url) {
     return (
       <Icon
-        className={cn('shrink-0', kind === 'portrait' ? 'size-7' : 'size-4')}
+        className={cn('shrink-0', kind === 'portrait' ? 'size-7' : 'size-4', className)}
         aria-hidden="true"
       />
     )
@@ -43,7 +45,8 @@ export function ThemeCharacterImage({
       viewBox={`0 0 ${crop.width} ${crop.height}`}
       className={cn(
         'shrink-0 overflow-hidden rounded-sm',
-        kind === 'portrait' ? 'hunter-companion-portrait' : 'size-5'
+        kind === 'portrait' ? 'hunter-companion-portrait' : 'size-5',
+        className
       )}
       aria-hidden="true"
       focusable="false"

@@ -1,3 +1,4 @@
+import { CharacterThemeScenery } from './hunter-theme/CharacterThemeScenery'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import { AlertTriangle, ExternalLink, FolderPlus, GitBranchPlus, Star, X } from 'lucide-react'
 import { cn } from '../lib/utils'
@@ -252,7 +253,8 @@ export default function Landing(): React.JSX.Element {
   }, [createTargetLabel, createWorktreeShortcut, nextWorktreeShortcut, previousWorktreeShortcut])
 
   return (
-    <div className="absolute inset-0 flex items-center justify-center bg-background">
+    <div className="character-theme-surface absolute inset-0 flex items-center justify-center bg-background">
+      <CharacterThemeScenery area="workspace" />
       <div className="w-full max-w-lg px-6">
         <div className="flex flex-col items-center gap-4 py-8">
           <div

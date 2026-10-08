@@ -36,7 +36,7 @@ export const HUNTER_THEME_MANIFEST: CharacterThemeManifest = {
       portrait: { path: 'assets/killua.gif', crop: { x: 0, y: 0, width: 145, height: 450 } },
       avatar: { path: 'assets/killua.gif', crop: { x: 505, y: 55, width: 165, height: 165 } },
       expressions: {
-        done: { path: 'assets/killua.gif', crop: { x: 505, y: 260, width: 165, height: 165 } }
+        done: { path: 'assets/killua.gif', crop: { x: 475, y: 240, width: 200, height: 210 } }
       }
     },
     {
@@ -58,7 +58,13 @@ export const HUNTER_THEME_MANIFEST: CharacterThemeManifest = {
       }
     }
   ],
-  areas: { workspace: 'gon', agent: 'killua', review: 'kurapika', clock: 'killua' },
+  areas: { workspace: 'gon', agent: 'killua', review: 'kurapika', clock: 'leorio' },
+  scenery: {
+    workspace: { motif: 'aura' },
+    agent: { motif: 'lightning' },
+    review: { motif: 'chain' },
+    clock: { motif: 'orbit' }
+  },
   defaults: { characterId: 'gon', intensity: 'soft' },
   colors: { light: hunterColors, dark: hunterColors },
   effects: { working: 'electric', done: 'pulse', attention: 'outline' },

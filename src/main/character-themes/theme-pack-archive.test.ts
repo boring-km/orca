@@ -8,6 +8,7 @@ import {
   NEUTRAL_THEME_MANIFEST
 } from '../../shared/builtin-character-themes'
 import { MAX_THEME_ASSET_BYTES } from '../../shared/character-theme-manifest'
+import { SHINCHAN_THEME_MANIFEST } from '../../shared/shinchan-theme-manifest'
 import {
   normalizeCharacterThemeSettings,
   selectCharacterThemePack
@@ -58,9 +59,12 @@ const validFiles = () => [
 ]
 
 describe('portable character theme packs', () => {
-  it('validates bundled Hunter sheets including all expression crop bounds', async () => {
+  it.each([
+    { manifest: HUNTER_THEME_MANIFEST, directory: 'hunter-reference' },
+    { manifest: SHINCHAN_THEME_MANIFEST, directory: 'shinchan-reference' }
+  ])('validates bundled $directory assets and crop bounds', async ({ manifest, directory }) => {
     const assets = new Map<string, Buffer>()
-    for (const source of HUNTER_THEME_MANIFEST.sources) {
+    for (const source of manifest.sources) {
       assets.set(
         source.path,
         await readFile(
@@ -70,13 +74,13 @@ describe('portable character theme packs', () => {
             'renderer',
             'src',
             'assets',
-            'hunter-reference',
+            directory,
             source.path.slice('assets/'.length)
           )
         )
       )
     }
-    const hunter = validateThemePackContent(HUNTER_THEME_MANIFEST, assets)
+    const hunter = validateThemePackContent(manifest, assets)
     expect(await readThemePackArchive(await writeThemePackArchive(hunter))).toEqual(hunter)
   })
 

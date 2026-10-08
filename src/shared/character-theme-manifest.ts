@@ -104,6 +104,16 @@ export const characterThemeManifestSchema = z
       .max(32),
     characters: z.array(character).min(1).max(16),
     areas: z.record(z.enum(THEME_AREAS), id),
+    scenery: z
+      .partialRecord(
+        z.enum(THEME_AREAS),
+        z
+          .object({
+            motif: z.enum(['aura', 'lightning', 'chain', 'orbit', 'pajamas', 'dots', 'stars'])
+          })
+          .strict()
+      )
+      .optional(),
     defaults: z.object({ characterId: id, intensity: z.enum(THEME_INTENSITIES) }).strict(),
     colors: z.object({ light: colors, dark: colors }).strict(),
     effects: z

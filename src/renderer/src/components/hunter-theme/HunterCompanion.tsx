@@ -61,64 +61,55 @@ export default function HunterCompanion(): React.JSX.Element | null {
   ).length
 
   return (
-    <section
-      aria-label="캐릭터 테마"
-      className="hunter-companion shrink-0 border-t border-worktree-sidebar-border p-3 space-y-3"
-      data-character={character.id}
-      data-intensity={settings.enabled ? settings.intensity : 'off'}
-      data-agent-state={status ?? 'none'}
-      data-working-effect={pack.manifest.effects.working}
-      data-done-effect={pack.manifest.effects.done}
-      data-attention-effect={pack.manifest.effects.attention}
-    >
-      <div className="flex items-center justify-between gap-2">
-        <span className="truncate text-xs font-semibold">{pack.manifest.name}</span>
-        <CharacterThemeControls />
-      </div>
-      <div className="hunter-companion-scene flex items-center gap-3 rounded-md border border-border p-2">
-        {settings.enabled || theme.preview ? (
-          <ThemeCharacterImage
-            key={`${pack.key}-${character.id}`}
-            pack={pack}
-            character={character}
-            kind="portrait"
-            expression={
-              status === 'done'
-                ? 'done'
-                : status === 'working' || status === 'monitoring'
-                  ? 'working'
-                  : status === 'waiting' || status === 'blocked' || status === 'permission'
-                    ? 'attention'
-                    : 'idle'
-            }
-          />
-        ) : null}
-        <div className="min-w-0 space-y-2">
-          {thread ? (
-            <div className="truncate text-sm font-semibold" title={thread.worktree.path}>
-              {basename(thread.worktree.path) || thread.worktree.path}
-            </div>
+    <CharacterThemeControls>
+      <button
+        type="button"
+        aria-label="작업 상태 · 꾸미기 설정 열기"
+        className="hunter-companion w-full shrink-0 border-t border-worktree-sidebar-border p-3 space-y-3 text-left cursor-pointer focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        data-character={character.id}
+        data-intensity={settings.enabled ? settings.intensity : 'off'}
+        data-agent-state={status ?? 'none'}
+        data-working-effect={pack.manifest.effects.working}
+        data-done-effect={pack.manifest.effects.done}
+        data-attention-effect={pack.manifest.effects.attention}
+      >
+        <span className="hunter-companion-scene flex items-center justify-center gap-3 rounded-md border border-border p-3">
+          {settings.enabled || theme.preview ? (
+            <ThemeCharacterImage
+              key={`${pack.key}-${character.id}`}
+              pack={pack}
+              character={character}
+              kind="portrait"
+            />
           ) : null}
-          <div className="flex items-center gap-1.5 text-xs" role="status">
-            {status ? <AgentStateDot state={status} title={null} /> : null}
-            <span>{status ? STATUS_LABELS[status] : '현재 탭에 감지된 에이전트가 없습니다'}</span>
-          </div>
-          {(status === 'working' || status === 'monitoring') && entry ? (
-            <div className="text-xs text-muted-foreground tabular-nums">
-              작업 경과 {formatCompactDuration(now - (entry.turnStartedAt ?? entry.stateStartedAt))}
-            </div>
-          ) : null}
-          {lastCompletedAt !== null ? (
-            <div className="text-xs text-muted-foreground tabular-nums">
-              마지막 완료 {characterThemeClockLabel(lastCompletedAt)}
-            </div>
-          ) : null}
-        </div>
-      </div>
-      <div className="flex justify-between gap-2 text-xs text-muted-foreground tabular-nums">
-        <span>작업 중 {workingCount}</span>
-        <span>응답 필요 {attentionCount}</span>
-      </div>
-    </section>
+          <span className="block min-w-0 space-y-2">
+            {thread ? (
+              <span className="block truncate text-sm font-semibold" title={thread.worktree.path}>
+                {basename(thread.worktree.path) || thread.worktree.path}
+              </span>
+            ) : null}
+            <span className="flex items-center gap-1.5 text-xs" role="status">
+              {status ? <AgentStateDot state={status} title={null} /> : null}
+              <span>{status ? STATUS_LABELS[status] : '현재 탭에 감지된 에이전트가 없습니다'}</span>
+            </span>
+            {(status === 'working' || status === 'monitoring') && entry ? (
+              <span className="block text-xs text-muted-foreground tabular-nums">
+                작업 경과{' '}
+                {formatCompactDuration(now - (entry.turnStartedAt ?? entry.stateStartedAt))}
+              </span>
+            ) : null}
+            {lastCompletedAt !== null ? (
+              <span className="block text-xs text-muted-foreground tabular-nums">
+                마지막 완료 {characterThemeClockLabel(lastCompletedAt)}
+              </span>
+            ) : null}
+          </span>
+        </span>
+        <span className="flex justify-between gap-2 text-xs text-muted-foreground tabular-nums">
+          <span>작업 중 {workingCount}</span>
+          <span>응답 필요 {attentionCount}</span>
+        </span>
+      </button>
+    </CharacterThemeControls>
   )
 }

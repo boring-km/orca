@@ -126,6 +126,10 @@ export function CharacterThemeProvider({ children }: { children: ReactNode }): R
           next.manifest
         )
       })
+      const saved = normalizeCharacterThemeSettings(useAppStore.getState().settings?.characterTheme)
+      if (saved.activePackId !== next.key) {
+        throw new Error('테마 선택을 저장하지 못했습니다. 앱을 다시 시작한 뒤 선택해주세요.')
+      }
       setPreview(null)
     },
     [updateSettings]
